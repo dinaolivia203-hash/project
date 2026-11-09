@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fdf7f2">
+  <meta name="color-scheme" content="light">
+  <title>Cika's 21st ✨ — A Birthday Keepsake</title>
+  <meta name="description" content="A little digital keepsake for Cika's 21st birthday — candles, memories, a letter, and a jar full of wishes.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cika's 21st ✨ — A Birthday Keepsake">
+  <meta property="og:description" content="Tiup lilinnya, buka kadonya, dan simpan satu wish untuk Cika di chapter barunya.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%82%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="is-locked">
+
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============ CANDLE GATE ============ -->
+  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <div class="gate__bokeh" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="gate__petals" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="gate__card" id="gateCard">
+      <p class="gate__mission"><span aria-hidden="true"> A Special Birthday Mission</p>
+
+      <h1 class="gate__title" id="gateTitle"><em>Happy Birthday Cikaaaa!</em></h1>
+      <p class="gate__sub">Tiap Lilin Untuk Buka Kado nyaaa yaa</p>
+
+      <div class="candle-stage">
+        <div class="candles" id="candles">
+          <button class="candle" type="button" data-candle="1" aria-label="Tiup lilin 1" aria-pressed="false">
+            <span class="flame-wrap"><span class="glow"></span><span class="flame"></span><span class="smoke"></span></span>
+            <span class="candle__body"><span class="candle__wick"></span><span class="candle__shine"></span></span>
+            <span class="candle__label">Lilin 1</span>
+          </button>
+          <button class="candle" type="button" data-candle="2" aria-label="Tiup lilin 2" aria-pressed="false">
+            <span class="flame-wrap"><span class="glow"></span><span class="flame"></span><span class="smoke"></span></span>
+            <span class="candle__body"><span class="candle__wick"></span><span class="candle__shine"></span></span>
+            <span class="candle__label">Lilin 2</span>
+          </button>
+          <button class="candle" type="button" data-candle="3" aria-label="Tiup lilin 3" aria-pressed="false">
+            <span class="flame-wrap"><span class="glow"></span><span class="flame"></span><span class="smoke"></span></span>
+            <span class="candle__body"><span class="candle__wick"></span><span class="candle__shine"></span></span>
+            <span class="candle__label">Lilin 3</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="gate__progress" id="gateProgress" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
+      <p class="gate__hint" id="gateHint" aria-live="polite">
+        <span aria-hidden="true">✧</span> Klik tiap lilin untuk meniupnya
+        <span class="gate__remaining">(tersisa: <b>3</b> lilin)</span>
+      </p>
+
+      <button class="gate__open" id="openBtn" type="button" disabled>
+        <span aria-hidden="true">🕯️</span>
+        <span id="openLabel">Tiup semua lilin untuk membuka</span>
+      </button>
+      <p class="gate__micmsg" id="micMsg" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- ============ SITE ============ -->
+  <header class="site-head" id="siteHead">
+    <div class="wrap site-head__inner">
+      <a class="brand" href="#story">Cika's 21st <span aria-hidden="true">✨</span></a>
+
+      <nav class="nav" id="primaryNav" aria-label="Bagian keepsake">
+        <a href="#story" class="nav__link is-active">Story</a>
+        <a href="#gallery" class="nav__link">Gallery</a>
+        <a href="#letter" class="nav__link">Letter</a>
+        <a href="#wishes" class="nav__link">Wishes</a>
+      </nav>
+
+      <div class="head__actions">
+        <button class="tune" id="tuneBtn" type="button" aria-pressed="false" aria-label="Putar Monokrom — Tulus" title="Monokrom — Tulus">
+          <span class="tune__label">Play Lagu Disini</span>
+          <span class="tune__icon" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+          </span>
+        </button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Buka menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============ HERO / STORY ============ -->
+    <section class="hero" id="story">
+      <div class="hero__petals" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <p class="badge reveal">✦ A Sweet 21st Milestone Keepsake <span class="badge__heart" aria-hidden="true">♥</span></p>
+          <h1 class="hero__title reveal">Happy 21st Birthday,<br><em> Beloved Cika!</em></h1>
+          <p class="hero__text reveal">Entering chapter twenty-one with endless grace, radiant sunshine smiles, and our sweetest collected memories. Today we celebrate the magic that is you.</p>
+          <div class="hero__meta reveal" aria-label="Chapter 21, forever radiant">
+            <span>Chapter XXI</span><i aria-hidden="true"></i><span>Forever Radiant</span>
+          </div>
+        </div>
+
+        <div class="hero__photo reveal">
+          <figure class="polaroid">
+            <span class="tape tape--left" aria-hidden="true"></span>
+            <span class="tape tape--right" aria-hidden="true"></span>
+            <div class="polaroid__label">Caught in the Wild</div>
+            <div class="polaroid__img">
+              <img src="assets/img/cika.jpg" alt="Cika in a pink shirt and hijab, sitting on a wooden deck among pine trees at golden hour" width="720" height="1140">
+            </div>
+            <figcaption>
+              <p class="polaroid__age">21 <span>@</span> thriving <span class="polaroid__spark" aria-hidden="true">✨</span></p>
+              <p class="polaroid__cap">Chapter XXI · Forever Radian</p>
+            </figcaption>
+          </figure>
+          <span class="orbit orbit--1" aria-hidden="true">✦</span>
+          <span class="orbit orbit--2" aria-hidden="true">♡</span>
+          <span class="orbit orbit--3" aria-hidden="true">✦</span>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#gallery" aria-label="Gulir ke galeri">
+        <span>Scroll</span>
+        <i aria-hidden="true"></i>
+      </a>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="section gallery" id="gallery">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="eyebrow script">little moments, kept forever</p>
+          <h2 class="section-title">Chapter XXI <em>in Frames</em></h2>
+          <p class="section-sub">A few frames from the wild, wonderful story of you.</p>
+        </header>
+
+        <div class="collage">
+          <figure class="collage__item collage__photo collage__photo--main reveal">
+            <div class="collage__frame">
+              <img src="assets/img/cika.jpg" alt="Cika surrounded by tall pine trees at sunset" loading="lazy">
+            </div>
+            <figcaption><span class="collage__no">01</span> Golden hour, pine trees, and that soft pink light.</figcaption>
+          </figure>
+
+          <div class="collage__item collage__quote reveal">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <p>She blooms wherever she is planted.</p>
+            <span class="quote-src">a note to self</span>
+          </div>
+
+          <figure class="collage__item collage__photo collage__photo--crop reveal">
+            <div class="collage__frame">
+              <img src="assets/img/foto-kedua.jpg" alt="Cika taking a mirror selfie in a green floral outfit and soft pink hijab" loading="lazy">
+            </div>
+            <figcaption><span class="collage__no">02</span> Sweetest smile in the room.</figcaption>
+          </figure>
+
+          <div class="collage__item collage__xxi reveal" aria-label="Chapter 21">
+            <span class="xxi__small">chapter</span>
+            <span class="xxi__num">XXI</span>
+            <span class="xxi__small">twenty-one</span>
+            <span class="xxi__heart" aria-hidden="true">♥</span>
+          </div>
+
+          <div class="collage__item collage__quote collage__quote--alt reveal">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <p>Twenty-one looks so good on you, Cika.</p>
+            <span class="quote-src">from all of us</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LETTER ============ -->
+    <section class="letter" id="letter">
+      <div class="letter__bubbles" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="wrap letter__inner">
+        <header class="section-head reveal">
+          <p class="eyebrow script">a keepsake envelope just for you</p>
+          <h2 class="section-title">Sweet Letter <em>for Cika</em> <span class="heart" aria-hidden="true">♥</span></h2>
+          <div class="divider" aria-hidden="true"><span></span><span class="divider__heart">♥</span><span></span></div>
+        </header>
+
+        <article class="envelope reveal" id="letterCard">
+          <div class="envelope__top">
+            <span class="envelope__tag"><span aria-hidden="true">🔒</span> Chapter 21 · Private &amp; Confidential</span>
+            <span class="envelope__tag envelope__tag--right">With all our hearts</span>
+          </div>
+
+          <button class="seal" id="sealBtn" type="button" aria-label="Segel surat — tekan untuk mengirim cinta">
+            <span class="seal__ring" aria-hidden="true"></span>
+            <span class="seal__heart" aria-hidden="true">♥</span>
+          </button>
+
+          <div class="envelope__letter">
+            <p class="salutation">Hai ika,</p>
+            <p>cikaa, happy birthday to you yaa, The first thing I want to say is that I miss you so much. I miss you so, so much. It makes me very sad that distance keeps us apart—both physically and in terms of our communication. But one thing you must know is that I love you. </p>
+            <p>Semangat ya ka kuliah nyaa, cieee new eraa. Kapan kapan kita sharing sharing la tentang dunia perkuliahan ini. ka den tau badai ang pai lebih besar, tapi i really so proud of you atas segala pencapaian ang selama ini</p>
+            <p>Selamat 21 tahun hidup ikaaa, i lovee you and i miss you.</p>
+            <p class="signoff">Forever cheering for you,<br><span>With all our love</span> <span class="heart" aria-hidden="true">♡</span></p>
+          </div>
+
+          <p class="envelope__ps"><span aria-hidden="true">🕯️</span> P.S. Make the biggest wish when you blow out the candles! <span aria-hidden="true">✨</span></p>
+          <div class="envelope__glow" aria-hidden="true"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ WISHES ============ -->
+    <section class="section wishes" id="wishes">
+      <div class="wrap">
+        <div class="toast-block reveal">
+          <span class="toast-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 2.5h6l-1 8.2c-.1 1 .2 2 .9 2.8l1.6 1.9c.9 1.1 1.4 2.5 1.4 4v7.1c0 1.4-1.1 2.5-2.5 2.5h-7c-1.4 0-2.5-1.1-2.5-2.5v-7.1c0-1.5.5-2.9 1.4-4l1.6-1.9c.7-.8 1-1.8.9-2.8L9 2.5Z" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M12 20.5c1.3-1 2-2 2-3.1 0-.9-.7-1.6-1.6-1.6-.4 0-.8.1-1.1.4-.3-.3-.7-.4-1.1-.4-.9 0-1.6.7-1.6 1.6 0 1.1.7 2.1 2 3.1l.7.5.7-.5Z" fill="currentColor"/>
+              <path d="M8 14.5h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <h2 class="section-title">Raise a Glass to <em>Chapter 21</em></h2>
+          <p class="toast-text">Here's to late night drives, wild laughter, peaceful Sunday mornings, chasing dreams with heart wide open, and an unforgettable year ahead.</p>
+          <button class="btn btn--rose" id="toastBtn" type="button">
+            <span aria-hidden="true">🥂</span> Make a Toast for Cika <span aria-hidden="true">✨</span>
+          </button>
+          <p class="toast-note" id="toastNote" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="wishjar reveal">
+          <header class="wishjar__head">
+            <p class="eyebrow script">a little wish jar</p>
+            <h3>Wishes Untuk Youuuu</h3>
+            <p>Kumpulan doa dan harapan kecil from Me.</p>
+          </header>
+
+          <div class="wish-wall" id="wishWall" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,72 C220,128 430,34 720,56 C1010,78 1210,132 1440,60 L1440,130 L0,130 Z" fill="currentColor"></path>
+      </svg>
+    </div>
+
+    <div class="wrap footer__inner">
+      <div class="footer__ornament" aria-hidden="true"><span>♡</span><span>✦</span><span>♡</span></div>
+      <p class="footer__script">Made with endless love for Cika's 21st Chapter <span class="footer__emoji" aria-hidden="true">💖</span></p>
+      <p class="footer__sub">Sebuah Hadiah sederhana dari aku untuk kamu yang luar biasa.</p>
+
+      <nav class="footer__nav" aria-label="Navigasi footer">
+        <a href="#story">Story</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#letter">Letter</a>
+        <a href="#wishes">Wishes</a>
+      </nav>
+
+      <p class="footer__copy">©Dina Olivia2026.</p>
+    </div>
+  </footer>
+
+  <!-- Background song: put your own full track at assets/audio/monokrom.mp3 -->
+  <audio id="bg-audio" preload="none" loop aria-hidden="true"></audio>
+
+  <noscript>
+    <style>
+      .gate { display: none !important; }
+      body.is-locked { overflow: auto !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

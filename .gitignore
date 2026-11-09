@@ -1,0 +1,10 @@
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logs
+*.log
+
+# Local preview files
+preview.html
